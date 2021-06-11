@@ -1,0 +1,23 @@
+1)Questions
+
+I have a few conceptual questions, as a newbie to AngularJS. I have been working on a project which connects Mongodb with Express and Node.js.
+
+If I will be continuing to make projects which combine Mongodb with Express and Node.js, as well as other projects which use AngularJS to build a website, where should I store my installs of express, node.js, etc?
+
+Is it the case there will be different dependencies for projects like this, because each project will require a number of different javascript libraries? (If so, I would think it's worth it to install javascript libraries each time I make a new project.)
+
+2)Answerr.
+
+Should I install express, node, etc. every time I make a new project?
+
+Yes, install Express and other NPM components separately for each project. This way, you keep each project independent from the others and you can upgrade components in one without affecting all the others. Each project then has its own package.json which uniquely describes which versions of which modules it depends on. Disk space is ridiculously cheap. Retesting all your projects because you wanted to upgrade one component in one project is not.
+
+You may or may not want node.js installed separately for each project. If you follow the logic above, then you would also install node.js separately for the same reasons and you will have to make sure the right version of nodejs is running for each project. But, some people would prefer to just have one version of node.js installed on their system and make it a system-wide decision when they upgrade node.js to a new version (which will involve retesting all projects with the new version of node.js). The logic here is that you can probably change versions of node.js less frequently than you may make some NPM module change.
+
+If I will be continuing to make projects which combine Mongodb with Express and Node.js, as well as other projects which use AngularJS to build a website, where should I store my installs of express, node.js, etc?
+
+If you are going to keep everything separate for every project, then you would install each of the dependent modules (except perhaps for node.js) in the project directory. You can either manage node.js that way too or you can have one central place where you install each of the small number of node.js versions you want to use and then specify for each project which version of node.js it uses.
+
+Is it the case there will be different dependencies for projects like this, because each project will require a number of different javascript libraries? (If so, I would think it's worth it to install javascript libraries each time I make a new project.)
+
+Yes. Projects typically evolve over time and you will use different NPM modules in one project vs. another. Newer projects will typically pull in the latest NPM module version, yet you won't necessarily go upgrade all prior projects and retest them all (if they are working just fine, no need to mess with them), but you may want a feature in the latest version for your current project.
